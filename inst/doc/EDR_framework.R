@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -52,7 +52,6 @@ abundance <- do.call(rbind, simulated_abun)
 head(abundance)
 
 ## ----state_dissim-------------------------------------------------------------
-
 # Generate a matrix containing dissimilarities between states
 state_dissim <- vegan::vegdist(abundance[, c("sp1", "sp2")], method = "bray")
 as.matrix(state_dissim)[1:6, 1:6]
@@ -75,7 +74,6 @@ plot(state_mds$D1, state_mds$D2,
 
 
 ## ----traj_state_mds, fig = TRUE, fig.height = 5, fig.width = 5, fig.align = "center"----
-
 ## -->> This code shows you the process step by step. You could directly use 
 ## -->> ecotraj::trajectoryPlot()
 
@@ -101,7 +99,6 @@ for (isampling in seq(1, 30, 3)) {
 
 
 ## ----traj_dissim, fig = TRUE, fig.height = 5, fig.width = 5, fig.align = "center"----
-
 # Generate a matrix containing dissimilarities between trajectories
 traj_dissim <- ecotraj::trajectoryDistances(state_dissim, 
                                             sites = rep(ID_sampling, each = 3),
@@ -159,7 +156,6 @@ cor(state_mds$D1, abundance$sp2)
 
 
 ## ----RETRA-EDR----------------------------------------------------------------
-
 # Use set.seed to obtain reproducible results of the segment space in RETRA-EDR
 set.seed(123)
 
@@ -198,7 +194,6 @@ legend("bottomright", c("T1", "T2", "Link"),
 
 
 ## ----define_retra_df----------------------------------------------------------
-
 # Generate a data frame indicating the states forming the new trajectories
 new_traj_df <- data.frame(
   # name of the new trajectories (as many times as the number of states)
@@ -220,7 +215,6 @@ new_traj_df
 
 
 ## ----define_retra_ls----------------------------------------------------------
-
 # List including the sequence of segments for each new trajectory
 new_traj_ls <- list(
   # First part of T1 excluding the last segment
