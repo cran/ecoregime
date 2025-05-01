@@ -596,18 +596,21 @@ ecological applications. Here, I suggest the directed segment path
 dissimilarity (De Cáceres et al., 2019, <em>Ecol. Monogr.</em>, <a href="https://doi.org/10.1002/ecm.1350" class="uri">https://doi.org/10.1002/ecm.1350</a>), but you could use any
 other dissimilarity metric.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Generate a matrix containing dissimilarities between trajectories</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>traj_dissim <span class="ot">&lt;-</span> ecotraj<span class="sc">::</span><span class="fu">trajectoryDistances</span>(state_dissim, </span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                                            <span class="at">sites =</span> <span class="fu">rep</span>(ID_sampling, <span class="at">each =</span> <span class="dv">3</span>),</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                                            <span class="at">surveys =</span> <span class="fu">rep</span>(ID_obs, <span class="dv">10</span>), <span class="at">distance.type =</span> <span class="st">&quot;DSPD&quot;</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="fu">as.matrix</span>(traj_dissim)[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt;           A          B         C          D         E         F</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; A 0.0000000 0.30509564 0.1084426 0.27711311 0.5425424 0.2600516</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; B 0.3050956 0.00000000 0.1409823 0.02576483 0.1520544 0.6244592</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; C 0.1084426 0.14098231 0.0000000 0.11299979 0.3784291 0.4231264</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; D 0.2771131 0.02576483 0.1129998 0.00000000 0.1756016 0.6031298</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; E 0.5425424 0.15205442 0.3784291 0.17560156 0.0000000 0.8146293</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; F 0.2600516 0.62445921 0.4231264 0.60312977 0.8146293 0.0000000</span></span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>traj_dissim <span class="ot">&lt;-</span> ecotraj<span class="sc">::</span><span class="fu">trajectoryDistances</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  ecotraj<span class="sc">::</span><span class="fu">defineTrajectories</span>(state_dissim, </span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>                              <span class="at">sites =</span> <span class="fu">rep</span>(ID_sampling, <span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>                              <span class="at">surveys =</span> <span class="fu">rep</span>(ID_obs, <span class="dv">10</span>)),</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>  <span class="at">distance.type =</span> <span class="st">&quot;DSPD&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="fu">as.matrix</span>(traj_dissim)[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt;           A          B         C          D         E         F</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; A 0.0000000 0.30509564 0.1084426 0.27711311 0.5425424 0.2600516</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; B 0.3050956 0.00000000 0.1409823 0.02576483 0.1520544 0.6244592</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">#&gt; C 0.1084426 0.14098231 0.0000000 0.11299979 0.3784291 0.4231264</span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">#&gt; D 0.2771131 0.02576483 0.1129998 0.00000000 0.1756016 0.6031298</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">#&gt; E 0.5425424 0.15205442 0.3784291 0.17560156 0.0000000 0.8146293</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">#&gt; F 0.2600516 0.62445921 0.4231264 0.60312977 0.8146293 0.0000000</span></span></code></pre></div>
 <p>In contrast to the state space, in the trajectory space, each
 trajectory is represented by one point:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># Multidimensional scaling</span></span>
@@ -1221,9 +1224,10 @@ trajectory dissimilarities:</p>
 <span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>                                      <span class="at">method =</span> <span class="st">&quot;bray&quot;</span>)</span>
 <span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a></span>
 <span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a><span class="co"># Calculate trajectory dissimilarities including trajectories in the three EDRs</span></span>
-<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>traj_dissim_allEDR <span class="ot">&lt;-</span> ecotraj<span class="sc">::</span><span class="fu">trajectoryDistances</span>(state_dissim_allEDR, </span>
-<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>                                                   <span class="at">sites =</span> abundance_allEDR<span class="sc">$</span>sampling_unit,</span>
-<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a>                                                   <span class="at">surveys =</span> abundance_allEDR<span class="sc">$</span>time)</span></code></pre></div>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>traj_dissim_allEDR <span class="ot">&lt;-</span> ecotraj<span class="sc">::</span><span class="fu">trajectoryDistances</span>(</span>
+<span id="cb32-11"><a href="#cb32-11" tabindex="-1"></a>  ecotraj<span class="sc">::</span><span class="fu">defineTrajectories</span>(state_dissim_allEDR, </span>
+<span id="cb32-12"><a href="#cb32-12" tabindex="-1"></a>                              <span class="at">sites =</span> abundance_allEDR<span class="sc">$</span>sampling_unit,</span>
+<span id="cb32-13"><a href="#cb32-13" tabindex="-1"></a>                              <span class="at">surveys =</span> abundance_allEDR<span class="sc">$</span>time))</span></code></pre></div>
 <p>If we plot the trajectories of all EDRs in a common state space, we
 can see that <em>EDR2</em> is closer to <em>EDR1</em> than
 <em>EDR3</em>. This is not surprising since all the species in

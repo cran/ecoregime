@@ -100,9 +100,12 @@ for (isampling in seq(1, 30, 3)) {
 
 ## ----traj_dissim, fig = TRUE, fig.height = 5, fig.width = 5, fig.align = "center"----
 # Generate a matrix containing dissimilarities between trajectories
-traj_dissim <- ecotraj::trajectoryDistances(state_dissim, 
-                                            sites = rep(ID_sampling, each = 3),
-                                            surveys = rep(ID_obs, 10), distance.type = "DSPD")
+traj_dissim <- ecotraj::trajectoryDistances(
+  ecotraj::defineTrajectories(state_dissim, 
+                              sites = rep(ID_sampling, each = 3),
+                              surveys = rep(ID_obs, 10)),
+  distance.type = "DSPD"
+)
 
 as.matrix(traj_dissim)[1:6, 1:6]
 
@@ -460,9 +463,10 @@ state_dissim_allEDR <- vegan::vegdist(abundance_allEDR[, paste0("sp", 1:4)],
                                       method = "bray")
 
 # Calculate trajectory dissimilarities including trajectories in the three EDRs
-traj_dissim_allEDR <- ecotraj::trajectoryDistances(state_dissim_allEDR, 
-                                                   sites = abundance_allEDR$sampling_unit,
-                                                   surveys = abundance_allEDR$time)
+traj_dissim_allEDR <- ecotraj::trajectoryDistances(
+  ecotraj::defineTrajectories(state_dissim_allEDR, 
+                              sites = abundance_allEDR$sampling_unit,
+                              surveys = abundance_allEDR$time))
 
 
 ## ----state_mds_allEDR, fig = TRUE, fig.height = 5, fig.width = 5, fig.align = "center"----
