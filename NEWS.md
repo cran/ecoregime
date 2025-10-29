@@ -1,3 +1,19 @@
+# ecoregime 0.3.0
+
+## Major changes
+
+* `state_to_trajectory()`: `method = "projection"` considers the nearest states in `reference` to calculate dissimilarities between the `target_states` and `reference`. `method = "mixed"` returns the same values than `method = "projection"`.
+
+## Minor changes and bug fixes
+
+* `plot.RETRA()` correctly represents trajectories when states are not in order.
+
+* `plot_edr()` does not print `[[i]]NULL` to the console.
+
+* `retra_edr()`: fixed error when `!is.null(Dim)`.
+
+* Fixed errors due to incompatibilities with ecotraj 1.1.1
+
 # ecoregime 0.2.1
 
 ## Bugfixes
